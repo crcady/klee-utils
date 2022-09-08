@@ -26,4 +26,4 @@ RUN make -j$(nproc) && make install
 
 FROM ubuntu:18.04 as final
 
-COPY --from=builder /tmp/llvm-install /tmp/llvm-installS
+COPY --from=builder /tmp/llvm-install /tmp/llvm-install
