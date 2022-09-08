@@ -23,4 +23,4 @@ RUN make install
 
 FROM ubuntu:18.04 as final
 ARG Z3_INSTALL_DIR=/tmp/z3_install
-COPY --from=builder /tmp/ /tmp/
+COPY --from=builder $Z3_INSTALL_DIR $Z3_INSTALL_DIR
