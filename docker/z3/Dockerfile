@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 FROM base as builder
 ARG Z3_INSTALL_DIR=/tmp/z3_install
 RUN mkdir -p $Z3_INSTALL_DIR
-RUN git clone -b z3-4.11.2 --depth 1 https://github.com/Z3Prover/z3
+RUN git clone -b z3-4.4.1 --depth 1 https://github.com/Z3Prover/z3
 RUN mkdir -p z3_build
 WORKDIR /tmp/z3_build
 RUN cmake \
