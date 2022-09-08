@@ -11,12 +11,9 @@ FROM base as builder
 ARG Z3_INSTALL_DIR=/tmp/z3_install
 RUN mkdir -p $Z3_INSTALL_DIR
 RUN git clone -b z3-4.11.2 --depth 1 https://github.com/Z3Prover/z3
-RUN mkdir -p z3_build
-WORKDIR /tmp/z3_build
-RUN cmake \
-    -DCMAKE_BUILD_TYPE=MinSizeRel \
-    -DCMAKE_INSTALL_PREFIX=$Z3_INSTALL_DIR \
-    ../z3
+WORKDIR /tmp/z3
+RUN python3 scripts/mk_make.py --prefix=$Z3_INSTALL_DIR
+WORKDIR /tmp/z3/build
 
 RUN make -j$(nproc)
 RUN make install
