@@ -1,5 +1,5 @@
 FROM crcady/llvm:11.1.0-18.04-MinSizeRel as llvm_base
-FROM crcady/z3:4.11.2-18.04-MinSizeRel as z3_base
+FROM crcady/z3:4.4.1-18.04-MinSizeRel as z3_base
 FROM ubuntu:18.04 as base
 COPY --from=llvm_base /tmp/ /tmp/
 COPY --from=z3_base /tmp/ /tmp/
@@ -43,7 +43,7 @@ RUN cmake -G "Unix Makefiles" \
     -DENABLE_SOLVER_Z3=ON \
     -DLLVM_CONFIG_BINARY=/tmp/llvm-installS/bin/llvm-config \
     -DZ3_INCLUDE_DIRS=/tmp/z3_install/include \
-    -DZ3_LIBRARIES=/tmp/z3_install/lib \
+    -DZ3_LIBRARIES=/tmp/z3_install/lib/libz3.so \
     -DENABLE_UNIT_TESTS=OFF \
     -DENABLE_SYSTEM_TESTS=OFF \
     ../klee
