@@ -49,3 +49,6 @@ RUN cmake -G "Unix Makefiles" \
     ../klee
 
 RUN make -j$(nproc) && make install
+
+FROM builder as final
+COPY --from=ready-to-build /tmp/klee-install /tmp/klee-install
