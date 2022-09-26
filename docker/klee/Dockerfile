@@ -41,7 +41,7 @@ RUN cmake -G "Unix Makefiles" \
     -DENABLE_SOLVER_STP=OFF \
     -DENABLE_POSIX_RUNTIME=OFF \
     -DENABLE_SOLVER_Z3=ON \
-    -DLLVM_CONFIG_BINARY=/tmp/llvm-installS/bin/llvm-config \
+    -DLLVM_CONFIG_BINARY=/tmp/llvm-install/bin/llvm-config \
     -DZ3_INCLUDE_DIRS=/tmp/z3_install/include \
     -DZ3_LIBRARIES=/tmp/z3_install/lib/libz3.so \
     -DENABLE_UNIT_TESTS=OFF \
