@@ -32,7 +32,7 @@ RUN mkdir -p klee-build
 
 WORKDIR /tmp/klee-build
 
-FROM builder as ready-to-build
+# FROM builder as ready-to-build
 
 RUN cmake -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
@@ -50,5 +50,5 @@ RUN cmake -G "Unix Makefiles" \
 
 RUN make -j$(nproc) && make install
 
-FROM builder as final
-COPY --from=ready-to-build /tmp/klee-install /tmp/klee-install
+#FROM builder as final
+#COPY --from=ready-to-build /tmp/klee-install /tmp/klee-install
