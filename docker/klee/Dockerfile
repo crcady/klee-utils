@@ -6,7 +6,6 @@ COPY --from=z3_base /tmp/ /tmp/
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    cmake \
     curl \
     file \
     g++-multilib \
@@ -24,6 +23,12 @@ RUN apt-get update && apt-get install -y \
     doxygen \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Need to install CMake separately, because older versions of linux don't have a new enough version to build gRPC
+# Note that the arguments change between wget (-s -L -o <filename>) and wget (-q -O <filename>)
+RUN curl -s -L -o /tmp/cmake-linux.sh https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2-Linux-x86_64.sh \
+    && sh /tmp/cmake-linux.sh -- --skip-license --prefix=/usr/local \
+    && rm /tmp/cmake-linux.sh
 
 WORKDIR /tmp/
 FROM base as builder
